@@ -198,3 +198,19 @@ tc = TestCar()
 tc.name = '雷凌'
 tc.price = 1954666
 tc.color = 'red'
+
+
+# 将类中把方法设置成属性调用使用@property
+# 避免属性直接暴露导致无法检查参数，随便改写数据
+class Family(object):
+    @property
+    def age(self):
+        return self._age
+
+    @age.setter
+    def age(self, value):
+        if not isinstance(value, int):
+            raise ValueError("age must be an integer!")
+        if value < 0 or value > 101:
+            raise ValueError("age must be 0~100!")
+        self._age = value
